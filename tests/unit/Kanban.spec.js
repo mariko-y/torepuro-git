@@ -116,7 +116,7 @@ describe("Kanban.vue", () => {
       // wrapper.setMethods({ closeAddModal })
       // wrapper.findComponent(AddModal).vm.$emit("closeAddModal");
       // expect(closeAddModal).toBeCalled()
-
+      //test comment
 
 
     });
