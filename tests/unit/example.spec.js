@@ -11,5 +11,6 @@ describe('HelloWorld.vue', () => {
 
     // merge test
     // merge_view test1
+    // merge_view test2
   })
 })
