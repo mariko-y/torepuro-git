@@ -21,4 +21,5 @@ describe("MainPage.vue", () => {
       const Kanban = wrapper.find("Kanban-stub");
       expect(Kanban.exists()).toBeTruthy();
     });
+  // merge test3
 });
