@@ -118,6 +118,7 @@ describe("Kanban.vue", () => {
       // expect(closeAddModal).toBeCalled()
       //test comment
       //Git hub to local test
+      // Git HowTo sheet makeing
 
 
     });
