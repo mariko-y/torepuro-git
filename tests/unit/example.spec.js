@@ -9,6 +9,8 @@ describe('HelloWorld.vue', () => {
     })
     expect(wrapper.text()).toMatch(msg)
 
-    // marge test
+    // merge test
+    // merge_view test1
+    // merge_view test2
   })
 })
