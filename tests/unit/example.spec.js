@@ -8,9 +8,5 @@ describe('HelloWorld.vue', () => {
       propsData: { msg }
     })
     expect(wrapper.text()).toMatch(msg)
-
-    // merge test
-    // merge_view test1
-    // merge_view test2
   })
 })
