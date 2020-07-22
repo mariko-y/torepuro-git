@@ -15,6 +15,7 @@
 
       <p>内容</p>
       <textarea v-model="storyContents" placeholder="内容を入力してください。" onfocus="this.placeholder = ''"></textarea>
+      <br>
       <button @click="$emit('closeDetailModal')">キャンセル</button>
       <span style="margin-right: 1em;"></span>
       <button @click="changeItem">保存</button>

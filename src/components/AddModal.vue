@@ -10,6 +10,7 @@
         placeholder="内容を入力してください。"
         onfocus="this.placeholder = ''"
       ></textarea>
+      <br>
       <button @click="$emit('closeAddModal')">キャンセル</button>
       <span style="margin-right: 1em;"></span>
       <button @click="addItem">保存</button>
