@@ -1,5 +1,5 @@
 <template>
-  <div id="overlay" v-show="detailShowing" @click="$emit('closeDetailModal')">
+  <div id="overlay" @click="$emit('closeDetailModal')">
     <div id="content" @click="$emit('preventCloseModal')">
       <h2>ストーリー詳細</h2>
       <p>ストーリー名</p>
@@ -15,7 +15,6 @@
 
       <p>内容</p>
       <textarea v-model="storyContents" placeholder="内容を入力してください。" onfocus="this.placeholder = ''"></textarea>
-      <br>
       <button @click="$emit('closeDetailModal')">キャンセル</button>
       <span style="margin-right: 1em;"></span>
       <button @click="changeItem">保存</button>
@@ -28,12 +27,11 @@
 <script>
 export default {
   props: {
-    detailShowing: Boolean,
     statuses: Array,
     passStoryName: String,
     passStoryContents: String,
     passStoryID: Number,
-    passStoryStatus: Number
+    passStoryStatus: Number,
   },
   computed: {
     storyName: {
@@ -42,7 +40,7 @@ export default {
       },
       set(value) {
         this.$emit("update:passStoryName", value);
-      }
+      },
     },
     storyContents: {
       get() {
@@ -50,7 +48,7 @@ export default {
       },
       set(value) {
         this.$emit("update:passStoryContents", value);
-      }
+      },
     },
     storyID: {
       get() {
@@ -58,7 +56,7 @@ export default {
       },
       set(value) {
         this.$emit("update:passStoryID", value);
-      }
+      },
     },
     storyStatus: {
       get() {
@@ -66,31 +64,38 @@ export default {
       },
       set(value) {
         this.$emit("update:passStoryStatus", value);
-      }
-    }
+      },
+    },
   },
   methods: {
-    changeItem: function() {
+    changeItem: function () {
       var index = this.$store.getters.stories.findIndex(
-        story => story.id === this.storyID
+        (story) => story.id === this.storyID
       );
       var story = {
         id: this.storyID,
         name: this.storyName,
         contents: this.storyContents,
-        status: this.storyStatus
+        status: this.storyStatus,
       };
+           if (!story.name.match(/\S/g)) {
+        alert("名前を入力してください！");
+      } else {
       this.$store.commit("changeStory", { changedStory: story, index: index });
       this.$emit("closeDetailModal");
+      }
     },
-    removeItem: function() {
-      var index = this.$store.getters.stories.findIndex(
-        story => story.id === this.storyID
-      );
-      this.$store.commit("removeStory", index);
-      this.$emit("closeDetailModal");
-    }
-  }
+    removeItem: function () {
+      var result = confirm("削除しますか？");
+      if (result) {
+        var index = this.$store.getters.stories.findIndex(
+          (story) => story.id === this.storyID
+        );
+        this.$store.commit("removeStory", index);
+        this.$emit("closeDetailModal");
+      }
+    },
+  },
 };
 </script>
 
