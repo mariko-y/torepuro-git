@@ -9,16 +9,16 @@
       <p>Password:</p>
       <input type="text" />
       <p>
-      <button @click="toKanban">ログイン</button>
+        <button @click="toKanban">ログイン</button>
       </p>
     </div>
   </div>
 </template>
 <script>
 export default {
-    created() {
+  created() {
     const users = [
-      { userId: "yajima", password: "aaa"},
+      { userId: "yajima", password: "aaa" },
       { userId: "kato", password: "bbb" },
       { userId: "takada", password: "ccc" },
       { userId: "wang", password: "ddd" },
@@ -26,7 +26,7 @@ export default {
     this.$store.commit("setUsers", users);
   },
   methods: {
-    toKanban: function () {
+    toKanban: function() {
       this.$router.push({ path: "/mainpage" });
     },
     toRegister: function() {
@@ -35,6 +35,7 @@ export default {
   },
 };
 </script>
+
 <style>
 @import "../style/Modal.css";
 #content {
