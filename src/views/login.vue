@@ -4,7 +4,6 @@
       <a class="here">ログイン</a>
       <span style="margin-right: 1em;"></span>
       <a @click="toRegister">登録</a>
-
       <p>ID:</p>
       <input type="text" />
       <p>Password:</p>
