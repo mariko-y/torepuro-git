@@ -33,13 +33,14 @@ export default {
         userId: this.addUserId,
         password: this.addPassword,
       };
-      if (!user.userId.match(/\S/g)) {
+      if ((!this.addUserId.match(/\S/g)) || (!this.addPassword.match(/\S/g) )) {
         alert("IDを入力してください！");
-      } else {
-        this.$store.commit("addUser", user);
-        this.$router.push({ path: "/mainpage" });
-        console.log(this.$store.getters.users)
+        return;
       }
+      console.log(user)
+      this.$store.commit("addUser", user);
+      this.$router.push({ path: "/mainpage" });
+      console.log(this.$store.getters.users)
       this.addUserId = "";
       this.addPassword = "";
     },
