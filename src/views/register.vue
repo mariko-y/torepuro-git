@@ -10,7 +10,7 @@
       <p>Password:</p>
       <input type="text" v-model="addPassword" />
       <p>
-      <button @click="addUser">登録</button>
+        <button @click="addUser">登録</button>
       </p>
     </div>
   </div>
@@ -18,34 +18,39 @@
 
 <script>
 export default {
-   data() {
+  data() {
     return {
       addUserId: "",
       addPassword: "",
     };
   },
   methods: {
-    toLogin: function() {
+    toLogin: function () {
       this.$router.push({ path: "/" });
     },
-     addUser: function () {
+    addUser: function () {
       var user = {
         userId: this.addUserId,
         password: this.addPassword,
       };
-      if ((!this.addUserId.match(/\S/g)) || (!this.addPassword.match(/\S/g) )) {
-        alert("IDを入力してください！");
+      if (!user.userId.match(/\S/g) || !user.password.match(/\S/g)) {
+        alert("未入力項目があります！");
         return;
       }
-      console.log(user)
+      for (var registeredUser of this.$store.getters.users) {
+        if (user.userId == registeredUser.userId) {
+          alert("このIdは登録されています！");
+          return;
+        }
+      }
+      console.log(user);
       this.$store.commit("addUser", user);
       this.$router.push({ path: "/mainpage" });
-      console.log(this.$store.getters.users)
+      console.log(this.$store.getters.users);
       this.addUserId = "";
       this.addPassword = "";
     },
   },
-  
 };
 </script>
 
@@ -63,5 +68,4 @@ export default {
 .here {
   text-decoration: underline;
 }
-
 </style>
