@@ -1,6 +1,6 @@
 <template>
-  <div id="overlay" @click="$emit('closeAddModal')">
-    <div id="content" @click="$emit('preventCloseModal')">
+  <div id="overlay" @click="$emit('close-add-modal')">
+    <div id="content" @click="$emit('prevent-close-modal')">
       <h2>ストーリーを追加</h2>
       <p>ストーリー名</p>
       <input type="text" v-model="addStoryName" />
@@ -10,27 +10,40 @@
         placeholder="内容を入力してください。"
         onfocus="this.placeholder = ''"
       ></textarea>
-      <button @click="$emit('closeAddModal')">キャンセル</button>
+      <button @click="$emit('close-add-modal')">キャンセル</button>
       <span style="margin-right: 1em;"></span>
       <button @click="addItem">保存</button>
     </div>
   </div>
 </template>
-
 <script>
+import axios from "axios";
 export default {
   props: {
     stories: Array,
   },
   data() {
     return {
-      storyCount: 100,
       addStoryName: "",
       addStoryContents: "",
+      addStory: [],
     };
   },
+  computed: {
+    storyCount: function () {
+      const stories = this.$store.getters.stories;
+      var maxId = 0;
+      for(const story of stories){
+        if(story["id"] > maxId){
+          maxId = story["id"]
+        }
+      }
+      console.log(maxId+1)
+      return maxId+1     
+    },
+  },
   methods: {
-    addItem: function () {
+    addItem: function () {  
       var story = {
         id: this.storyCount,
         name: this.addStoryName,
@@ -40,9 +53,28 @@ export default {
       if (!story.name.match(/\S/g)) {
         alert("名前を入力してください！");
       } else {
-        this.$store.commit("addStory", story);
-        this.$emit("closeAddModal");
-        this.storyCount = this.storyCount + 1;
+        var mes =
+          "?id=" +
+          story.id +
+          "&name=" +
+          story.name +
+          "&contents=" +
+          story.contents +
+          "&status=" +
+          story.status;
+        axios
+          .get(
+            "https://k2vpygj2sj.execute-api.us-east-2.amazonaws.com/add-story" +
+              mes
+          )
+          .then(
+            (response) =>
+              (this.setStories = JSON.parse(response.data.body)["Items"])
+          )
+          .catch((error) => console.log(error))
+          .finally(() => this.$store.commit("setStories", this.setStories));
+
+        this.$emit("close-add-modal");
       }
       this.addStoryName = "";
       this.addStoryContents = "";

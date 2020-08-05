@@ -22,24 +22,25 @@
         </td>
       </tr>
     </table>
-     <transition name="fade">
-    <AddModal
-      v-show="addShowing"
-      v-on:closeAddModal="closeAddModal"
-      v-on:preventCloseModal="preventCloseModal"
-    />
-     </transition>
+    {{$store.getters.users}}
     <transition name="fade">
-    <DetailModal
-      v-show="detailShowing"
-      :statuses.sync="statuses"
-      :passStoryName.sync="storyName"
-      :passStoryContents.sync="storyContents"
-      :passStoryID.sync="storyID"
-      :passStoryStatus.sync="storyStatus"
-      v-on:closeDetailModal="closeDetailModal"
-      v-on:preventCloseModal="preventCloseModal"
-    ></DetailModal>
+      <AddModal
+        v-show="addShowing"
+        v-on:close-add-modal="closeAddModal"
+        v-on:prevent-close-modal="preventCloseModal"
+      />
+    </transition>
+    <transition name="fade">
+      <DetailModal
+        v-show="detailShowing"
+        :statuses.sync="statuses"
+        :passStoryName.sync="storyName"
+        :passStoryContents.sync="storyContents"
+        :passStoryID.sync="storyID"
+        :passStoryStatus.sync="storyStatus"
+        v-on:close-detail-modal="closeDetailModal"
+        v-on:prevent-close-modal="preventCloseModal"
+      ></DetailModal>
     </transition>
   </div>
 </template>
@@ -52,29 +53,7 @@ export default {
   name: "Kanban",
   components: {
     AddModal,
-    DetailModal
-  },
-  created() {
-    const stories = [
-      {
-        id: 1,
-        name: "画期的なデザインに変更",
-        contents: "背景色を青に変える",
-        status: 1
-      },
-      { id: 2, name: "Story2", contents: "contents2", status: 1 },
-      { id: 3, name: "Story3", contents: "contents3", status: 3 },
-      { id: 4, name: "Story4", contents: "contents4", status: 2 },
-      { id: 5, name: "Story5", contents: "contents5", status: 3 },
-      { id: 6, name: "Story6", contents: "contents6", status: 2 },
-      { id: 7, name: "ストーリー2", contents: "内容2", status: 3 },
-      { id: 8, name: "ストーリー3", contents: "内容3", status: 1 },
-      { id: 9, name: "ストーリー4", contents: "内容4", status: 4 },
-      { id: 10, name: "ストーリー5", contents: "内容5", status: 2 },
-      { id: 11, name: "ストーリー6", contents: "内容6", status: 4 },
-      { id: 12, name: "ストーリー7", contents: "内容7", status: 2 }
-    ];
-    this.$store.commit("setStories", stories);
+    DetailModal,
   },
   data() {
     return {
@@ -84,42 +63,42 @@ export default {
         { id: 1, name: "Todo" },
         { id: 2, name: "Doing" },
         { id: 3, name: "Review" },
-        { id: 4, name: "Done" }
+        { id: 4, name: "Done" },
       ],
       storyID: null,
       storyName: "",
       storyContents: "",
-      storyStatus: null
+      storyStatus: null,
     };
   },
   computed: {
-    doneLength: function() {
-      return this.$store.getters.stories.filter(function(val) {
+    doneLength: function () {
+      return this.$store.getters.stories.filter(function (val) {
         return val.status == 4;
       }).length;
-    }
+    },
   },
   methods: {
-    openAddModal: function() {
+    openAddModal: function () {
       this.addShowing = true;
     },
-    closeAddModal: function() {
+    closeAddModal: function () {
       this.addShowing = false;
     },
-    preventCloseModal: function() {
+    preventCloseModal: function () {
       event.stopPropagation();
     },
-    openDetailModal: function(story) {
+    openDetailModal: function (story) {
       this.storyName = story.name;
       this.storyContents = story.contents;
       this.storyID = story.id;
       this.storyStatus = story.status;
       this.detailShowing = true;
     },
-    closeDetailModal: function() {
+    closeDetailModal: function () {
       this.detailShowing = false;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -161,10 +140,12 @@ th {
   font-size: 120%;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to {
-  opacity: 0
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

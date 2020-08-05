@@ -1,6 +1,6 @@
 <template>
-  <div id="overlay" @click="$emit('closeDetailModal')">
-    <div id="content" @click="$emit('preventCloseModal')">
+  <div id="overlay" @click="$emit('close-detail-modal')">
+    <div id="content" @click="$emit('prevent-close-modal')">
       <h2>ストーリー詳細</h2>
       <p>ストーリー名</p>
       <input type="text" v-model="storyName" />
@@ -15,7 +15,7 @@
 
       <p>内容</p>
       <textarea v-model="storyContents" placeholder="内容を入力してください。" onfocus="this.placeholder = ''"></textarea>
-      <button @click="$emit('closeDetailModal')">キャンセル</button>
+      <button @click="$emit('close-detail-modal')">キャンセル</button>
       <span style="margin-right: 1em;"></span>
       <button @click="changeItem">保存</button>
       <span style="margin-right: 1em;"></span>
@@ -82,7 +82,7 @@ export default {
         alert("名前を入力してください！");
       } else {
       this.$store.commit("changeStory", { changedStory: story, index: index });
-      this.$emit("closeDetailModal");
+      this.$emit("close-detail-modal");
       }
     },
     removeItem: function () {
@@ -92,7 +92,7 @@ export default {
           (story) => story.id === this.storyID
         );
         this.$store.commit("removeStory", index);
-        this.$emit("closeDetailModal");
+        this.$emit("close-detail-modal");
       }
     },
   },

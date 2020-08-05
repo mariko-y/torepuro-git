@@ -17,11 +17,14 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
       addUserId: "",
       addPassword: "",
+      setUsers: [],
     };
   },
   methods: {
@@ -43,10 +46,21 @@ export default {
           return;
         }
       }
-      console.log(user);
-      this.$store.commit("addUser", user);
+
+      var mes = "userId=" + user.userId + "&password=" + user.password;
+      axios
+        .get(
+          "https://iemitokln1.execute-api.us-east-2.amazonaws.com/add-user?" +
+            mes
+        )
+        .then(
+          (response) =>
+            (this.setUsers = JSON.parse(response.data.body)["Items"])
+        )
+        .catch((error) => console.log(error))
+        .finally(() => this.$store.commit("setUsers", this.setUsers));
+
       this.$router.push({ path: "/mainpage" });
-      console.log(this.$store.getters.users);
       this.addUserId = "";
       this.addPassword = "";
     },
