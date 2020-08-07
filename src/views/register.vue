@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="content">
-      <a @click="toLogin">ログイン</a>
+      <a @click="toLogin" class="login">ログイン</a>
       <span style="margin-right: 1em;"></span>
       <a class="here">登録</a>
 
@@ -47,11 +47,12 @@ export default {
         }
       }
 
-      var mes = "userId=" + user.userId + "&password=" + user.password;
       axios
-        .get(
-          "https://iemitokln1.execute-api.us-east-2.amazonaws.com/add-user?" +
-            mes
+        .post(
+          "https://80i4jtwfz4.execute-api.us-east-2.amazonaws.com/add-user-post" ,{
+            userId: this.addUserId,
+            password: this.addPassword
+          }
         )
         .then(
           (response) =>
@@ -81,5 +82,9 @@ export default {
 
 .here {
   text-decoration: underline;
+}
+.login:hover{
+  color:grey;
+  cursor: pointer;
 }
 </style>

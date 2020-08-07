@@ -22,7 +22,7 @@
         </td>
       </tr>
     </table>
-    {{$store.getters.users}}
+
     <transition name="fade">
       <AddModal
         v-show="addShowing"
@@ -133,6 +133,11 @@ export default {
   vertical-align: middle;
   word-break: break-all;
 }
+.story td:hover{
+  background-color:#ffff7f;
+  cursor:pointer;
+}
+
 tfoot {
   text-align: left;
 }

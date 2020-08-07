@@ -26,7 +26,7 @@ export default {
     return {
       addStoryName: "",
       addStoryContents: "",
-      addStory: [],
+      setStory: [],
     };
   },
   computed: {

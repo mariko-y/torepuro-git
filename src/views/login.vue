@@ -3,7 +3,7 @@
     <div id="content">
       <a class="here">ログイン</a>
       <span style="margin-right: 1em;"></span>
-      <a @click="toRegister">登録</a>
+      <a @click="toRegister" class="resister">登録</a>
 
       <p>ID:</p>
       <input type="text" v-model="checkUserId" />
@@ -94,5 +94,12 @@ export default {
 .here {
   text-decoration: underline;
   font-size: 120%;
+}
+.resister:hover{
+  color:grey;
+  cursor: pointer;
+}
+button:hover{
+  cursor:pointer;
 }
 </style>

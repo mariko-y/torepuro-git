@@ -1,6 +1,7 @@
 <template>
   <div id="mainpage">
     <h2>かんばんボード</h2>
+    <button @click="logout" class="logout">ログアウト</button>
     <p>とれぷろ！ 作</p>
     <!-- <input type="text" v-model="keyWord" placeholder="検索" onfocus="this.placeholder = ''"> -->
     <Kanban />
@@ -18,8 +19,14 @@ import Kanban from "./Kanban";
 export default {
   name: "MainPage",
   components: {
-    Kanban,
+    Kanban
   },
+
+  methods: {
+    logout: function () {
+      this.$router.push({ path: "/" });
+    },
+  }
 };
 </script>
 <style scoped>
@@ -33,5 +40,10 @@ export default {
 .pic2 {
   width: 15%;
   height: auto;
+}
+.logout {
+  position:  absolute;
+  top: 10px;
+  right: 10px;
 }
 </style>
