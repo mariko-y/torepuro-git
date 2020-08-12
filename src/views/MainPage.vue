@@ -1,7 +1,8 @@
 <template>
   <div id="mainpage">
-    <h2>かんばんボード</h2>
     <button @click="logout" class="logout">ログアウト</button>
+    <br>
+    <h2>かんばんボード</h2>
     <p>とれぷろ！ 作</p>
     <!-- <input type="text" v-model="keyWord" placeholder="検索" onfocus="this.placeholder = ''"> -->
     <Kanban />

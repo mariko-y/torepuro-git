@@ -8,7 +8,7 @@
       <p>ID:</p>
       <input type="text" v-model="addUserId" />
       <p>Password:</p>
-      <input type="text" v-model="addPassword" />
+      <input type="text" v-model="addPassword" @keyup.enter="addUser"/>
       <p>
         <button @click="addUser">登録</button>
       </p>
@@ -38,6 +38,10 @@ export default {
       };
       if (!user.userId.match(/\S/g) || !user.password.match(/\S/g)) {
         alert("未入力項目があります！");
+        return;
+      }
+      if (!user.userId.match(/^[A-Za-z0-9]*$/) || !user.password.match(/^[A-Za-z0-9]*$/)) {
+        alert("入力項目は半角英数字を入力してください！");
         return;
       }
       for (var registeredUser of this.$store.getters.users) {

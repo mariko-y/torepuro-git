@@ -4,11 +4,10 @@
       <a class="here">ログイン</a>
       <span style="margin-right: 1em;"></span>
       <a @click="toRegister" class="resister">登録</a>
-
       <p>ID:</p>
       <input type="text" v-model="checkUserId" />
       <p>Password:</p>
-      <input type="text" v-model="checkPassword" />
+      <input type="text" v-model="checkPassword" @keyup.enter="checkUser"/>
       <p>
         <button @click="checkUser">ログイン</button>
       </p>
