@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <!-- <router-link to="/">ログイン</router-link>|
-    <router-link to="/register">登録</router-link> -->
     <router-view />
   </div>
 </template>

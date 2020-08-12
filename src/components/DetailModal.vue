@@ -71,9 +71,9 @@ export default {
   },
   methods: {
     changeItem: function () {
-      // var index = this.$store.getters.stories.findIndex(
-      //   (story) => story.id === this.storyID
-      // );
+      var index = this.$store.getters.stories.findIndex(
+        (story) => story.id === this.storyID
+      );
       var story = {
         id: this.storyID,
         name: this.storyName,
@@ -85,26 +85,19 @@ export default {
       } else {
         var mes ="?id=" +story.id +"&name=" +story.name +"&contents=" +story.contents +"&status=" + story.status;
         axios.get("https://ssuc8x76hk.execute-api.us-east-2.amazonaws.com/change-story" +mes          )
-          .then((response) =>(this.setStories = JSON.parse(response.data.body)["Items"]))
-          .catch((error) => console.log(error))
-          .finally(() => this.$store.commit("setStories", this.setStories));
-
-      // this.$store.commit("changeStory", { changedStory: story, index: index });
-      this.$emit("close-detail-modal");
+        this.$store.commit("changeStory", { changedStory: story, index: index });
+        this.$emit("close-detail-modal");
       }
     },
     removeItem: function () {
       var result = confirm("削除しますか？");
       if (result) {
-        // var index = this.$store.getters.stories.findIndex(
-        //   (story) => story.id === this.storyID
-        // );
+        var index = this.$store.getters.stories.findIndex(
+          (story) => story.id === this.storyID
+        );
         var mes ="?id=" +this.storyID;
-        axios.get("https://0hdx0p6np7.execute-api.us-east-2.amazonaws.com/remove-story" +mes          )
-          .then((response) =>(this.setStories = JSON.parse(response.data.body)["Items"]))
-          .catch((error) => console.log(error))
-          .finally(() => this.$store.commit("setStories", this.setStories));
-        // this.$store.commit("removeStory", index);
+        axios.get("https://0hdx0p6np7.execute-api.us-east-2.amazonaws.com/remove-story" +mes)
+        this.$store.commit("removeStory", index);
         this.$emit("close-detail-modal");
       }
     },

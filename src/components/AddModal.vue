@@ -67,13 +67,7 @@ export default {
             "https://k2vpygj2sj.execute-api.us-east-2.amazonaws.com/add-story" +
               mes
           )
-          .then(
-            (response) =>
-              (this.setStories = JSON.parse(response.data.body)["Items"])
-          )
-          .catch((error) => console.log(error))
-          .finally(() => this.$store.commit("setStories", this.setStories));
-
+        this.$store.commit("addStory", story);
         this.$emit("close-add-modal");
       }
       this.addStoryName = "";
