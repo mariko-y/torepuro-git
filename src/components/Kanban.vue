@@ -128,10 +128,14 @@ export default {
 }
 .story td {
   width: 200px;
+  max-width: 190px;
   height: 30px;
   background-color: #ffffb2;
   vertical-align: middle;
-  word-break: break-all;
+  /* word-break: break-all; */
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis;
 }
 .story td:hover{
   background-color:#ffff7f;

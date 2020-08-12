@@ -68,7 +68,7 @@ export default {
           this.checkUserId == user.userId &&
           this.checkPassword == user.password
         ) {
-          this.$router.push({ path: "/mainpage" });
+          this.$router.push({ path: "/mainpage/" + this.checkUserId });
           flag = true;
         }
       }
