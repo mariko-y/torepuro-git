@@ -6,8 +6,8 @@
     <h2>かんばんボード</h2>
     <p>とれぷろ！ 作</p>
     <!-- <input type="text" v-model="keyWord" placeholder="検索" onfocus="this.placeholder = ''"> -->
-    <Kanban />
-    <button @click="shuffle">SHUFFLE</button>
+    <Kanban  v-on:shuffle="shuffle" />
+    <!-- <button @click="shuffle">SHUFFLE</button> -->
     <transition-group>
       <span v-for="pic in pics" :key="pic.key">
         <img :class="pic.class" :src="pic.src" />

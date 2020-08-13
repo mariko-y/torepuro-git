@@ -28,6 +28,7 @@
         v-show="addShowing"
         v-on:close-add-modal="closeAddModal"
         v-on:prevent-close-modal="preventCloseModal"
+        v-on:emit-parent-shuffle="emitParentShuffle"
       />
     </transition>
     <transition name="fade">
@@ -103,6 +104,9 @@ export default {
     closeDetailModal: function () {
       this.detailShowing = false;
     },
+    emitParentShuffle: function (){
+      this.$emit("shuffle");
+    }
   },
 };
 </script>

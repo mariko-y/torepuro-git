@@ -72,9 +72,7 @@ export default {
       }
       this.addStoryName = "";
       this.addStoryContents = "";
-
-      //シャッフル呼び出し（ゴール）
-      this.shuffle();
+      this.$emit("emit-parent-shuffle");
     },
   },
 };
