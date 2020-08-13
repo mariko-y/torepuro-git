@@ -34,7 +34,6 @@ export default {
         { key: 2, src: require("../assets/pic2.png"), class: "pic2" },
         { key: 3, src: require("../assets/pic1.png"), class: "pic1" },
       ],
-
     };
   },
   methods: {
@@ -43,8 +42,15 @@ export default {
     },
     shuffle: function () {
       this.pics = _.shuffle(this.pics);
+      console.log(this.timer);
     },
   },
+  mounted() {
+      this.timer = setInterval( this.shuffle, 5000);
+    },
+  beforeDestroy() {
+      clearInterval(this.timer);
+    }
 };
 </script>
 <style scoped>
