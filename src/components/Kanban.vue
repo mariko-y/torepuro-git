@@ -10,7 +10,7 @@
             </tr>
           </thead>
           <tbody>
-            <div v-for="story in $store.getters.stories" v-bind:key="story.id" class="story">
+             <div v-for="story in sortedStoriesById" v-bind:key="story.id" class="story">
               <tr v-if="story.status==status.id">
                 <td @click="openDetailModal(story)">{{story.name}}</td>
               </tr>
@@ -77,6 +77,11 @@ export default {
         return val.status == 4;
       }).length;
     },
+    sortedStoriesById(){
+        return this.$store.getters.stories.slice().sort((a, b) => {
+          return (a.id < b.id) ? -1 : (a.id > b.id) ? 1 : 0;
+        })
+    }
   },
   methods: {
     openAddModal: function () {
