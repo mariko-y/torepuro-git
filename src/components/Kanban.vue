@@ -116,19 +116,26 @@ export default {
   text-align: center;
   margin: auto;
   background-color: white;
-  width: 1000px;
+  width: 1300px;
 }
 .kanban td {
   border: 1px solid;
-  /* vertical-align: top; */
+  vertical-align: top;
+  width: 320px;
+  height: 200px;
+}
+.kanban thead{
+  text-align: center;
+  display:block;
+}
+.kanban tbody {
   overflow-y: scroll;
-  width: 220px;
+  width: 320px;
   height: 200px;
   display:block;
-  float:left;
 }
 .story {
-  width: 200px;
+  width: 300px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -137,15 +144,17 @@ export default {
   border: none;
 }
 .story td {
-  width: 200px;
-  max-width: 190px;
-  height: 30px;
+  width: 300px;
+  max-width: 290px;
+  height: 40px;
   background-color: #ffffb2;
   vertical-align: middle;
-  /* word-break: break-all; */
   white-space: nowrap;
   overflow: hidden; 
   text-overflow: ellipsis;
+  font-size: 20px; 
+  padding-top: 5%;
+
 }
 .story td:hover{
   background-color:#ffff7f;
