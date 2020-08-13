@@ -126,7 +126,8 @@ export default {
 }
 .kanban thead{
   text-align: center;
-  display:block;
+  display:inline;
+  font-size: 150%;
 }
 .kanban tbody {
   overflow-y: scroll;
@@ -139,10 +140,6 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
-.story tfoot td {
-  text-align: left;
-  border: none;
-}
 .story td {
   width: 300px;
   max-width: 290px;
@@ -153,7 +150,7 @@ export default {
   overflow: hidden; 
   text-overflow: ellipsis;
   font-size: 20px; 
-  padding-top: 5%;
+  padding-top: 2%;
 
 }
 .story td:hover{
@@ -164,9 +161,9 @@ export default {
 tfoot {
   text-align: left;
 }
-th {
-  font-size: 120%;
-}
+/* th {
+  font-size: 150%;
+} */
 
 .fade-enter-active,
 .fade-leave-active {
