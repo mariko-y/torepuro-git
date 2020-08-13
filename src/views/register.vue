@@ -65,7 +65,7 @@ export default {
         .catch((error) => console.log(error))
         .finally(() => this.$store.commit("setUsers", this.setUsers));
 
-      this.$router.push({ path: "/mainpage" });
+      this.$router.push({ path: "/mainpage/" + user.userId});
       this.addUserId = "";
       this.addPassword = "";
     },
