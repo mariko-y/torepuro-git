@@ -120,12 +120,12 @@ export default {
   text-align: center;
   margin: auto;
   background-color: white;
-  width: 1300px;
+  width: 1000px;
 }
 .kanban td {
   border: 1px solid;
   vertical-align: top;
-  width: 320px;
+  width: 250px;
   height: 200px;
 }
 .kanban thead{
@@ -135,18 +135,18 @@ export default {
 }
 .kanban tbody {
   overflow-y: scroll;
-  width: 320px;
+  width: 250px;
   height: 200px;
   display:block;
 }
 .story {
-  width: 300px;
+  width: 220px;
   margin-left: auto;
   margin-right: auto;
 }
 .story td {
-  width: 300px;
-  max-width: 290px;
+  width: 220px;
+  max-width: 210px;
   height: 40px;
   background-color: #ffffb2;
   vertical-align: middle;
