@@ -31,10 +31,7 @@ export default new Vuex.Store({
     },
     setUsers(state, newUsers) {
       state.users = newUsers;
-    },
-    addUser(state, newUser) {
-      state.users.push(newUser);
-    },
+    }
   },
   actions: {},
   modules: {},

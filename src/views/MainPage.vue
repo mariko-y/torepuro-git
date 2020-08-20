@@ -40,7 +40,6 @@ export default {
     },
     shuffle: function () {
       this.pics = _.shuffle(this.pics);
-      console.log(this.timer);
     },
     removeUser: function(){
        axios
@@ -86,37 +85,24 @@ h5 {
 @keyframes myfirst {
   0% {
     background: red;
-    left: 0px;
-    top: 0px;
   }
   25% {
     background: yellow;
-    left: 200px;
-    top: 0px;
   }
   50% {
     background: cyan;
-    left: 200px;
-    top: 200px;
   }
   75% {
     background: chartreuse;
-    left: 0px;
-    top: 200px;
   }
   100% {
     background: red;
-    left: 0px;
-    top: 0px;
   }
 }
 h2 {
   animation-name: myfirst;
   animation-duration: 5s;
   animation-timing-function: linear;
-  animation-delay: 2s;
   animation-iteration-count: infinite;
-  animation-direction: alternate;
-  animation-play-state: running;
 }
 </style>

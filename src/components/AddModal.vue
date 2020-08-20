@@ -38,7 +38,6 @@ export default {
           maxId = story["id"]
         }
       }
-      console.log(maxId+1)
       return maxId+1     
     },
   },

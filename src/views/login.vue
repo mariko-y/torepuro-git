@@ -50,9 +50,6 @@ export default {
         .finally(() => this.$store.commit("setStories", this.setStories));
   },
   methods: {
-    toKanban: function () {
-      this.$router.push({ path: "/mainpage" });
-    },
     toRegister: function () {
       this.$router.push({ path: "/register" });
     },

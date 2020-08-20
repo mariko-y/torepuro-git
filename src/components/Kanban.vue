@@ -165,9 +165,6 @@ export default {
 tfoot {
   text-align: left;
 }
-/* th {
-  font-size: 150%;
-} */
 
 .fade-enter-active,
 .fade-leave-active {

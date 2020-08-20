@@ -32,20 +32,16 @@ export default {
       this.$router.push({ path: "/" });
     },
     addUser: function () {
-      var user = {
-        userId: this.addUserId,
-        password: this.addPassword,
-      };
-      if (!user.userId.match(/\S/g) || !user.password.match(/\S/g)) {
+      if (!this.addUserId.match(/\S/g) || !this.addPassword.match(/\S/g)) {
         alert("未入力項目があります！");
         return;
       }
-      if (!user.userId.match(/^[A-Za-z0-9]*$/) || !user.password.match(/^[A-Za-z0-9]*$/)) {
+      if (!this.addUserId.match(/^[A-Za-z0-9]*$/) || !this.addPassword.match(/^[A-Za-z0-9]*$/)) {
         alert("入力項目は半角英数字を入力してください！");
         return;
       }
       for (var registeredUser of this.$store.getters.users) {
-        if (user.userId == registeredUser.userId) {
+        if (this.addUserId == registeredUser.userId) {
           alert("このIdは登録されています！");
           return;
         }
@@ -64,7 +60,7 @@ export default {
         .catch((error) => console.log(error))
         .finally(() => this.$store.commit("setUsers", this.setUsers));
 
-      this.$router.push({ path: "/mainpage/" + user.userId});
+      this.$router.push({ path: "/mainpage/" + this.addUserId});
       this.addUserId = "";
       this.addPassword = "";
     },
@@ -74,20 +70,4 @@ export default {
 
 <style>
 @import "../style/Modal.css";
-#content {
-  align-items: center; /*縦中央*/
-  justify-content: center; /*横中央*/
-  margin-left: auto;
-  margin-right: auto;
-  border: 0.25em solid;
-  border-color: rgb(170, 196, 24);
-}
-
-.here {
-  text-decoration: underline;
-}
-.login:hover{
-  color:grey;
-  cursor: pointer;
-}
 </style>
