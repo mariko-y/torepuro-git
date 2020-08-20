@@ -5,7 +5,7 @@
       <span style="margin-right: 1em;"></span>
       <a @click="toRegister" class="resister">登録</a>
       <p>ID:</p>
-      <input type="text" v-model="checkUserId" />
+      <input type="text" v-model="checkUserId"/>
       <p>Password:</p>
       <input type="text" v-model="checkPassword" @keyup.enter="checkUser"/>
       <p>
@@ -43,8 +43,7 @@ export default {
         )
         .then(
           (response) => (
-            (this.setStories = JSON.parse(response.data.body)["Items"]),
-            console.log(this.setStories)
+            (this.setStories = JSON.parse(response.data.body)["Items"])
           )
         )
         .catch((error) => console.log(error))

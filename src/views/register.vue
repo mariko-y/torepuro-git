@@ -50,7 +50,6 @@ export default {
           return;
         }
       }
-
       axios
         .post(
           "https://80i4jtwfz4.execute-api.us-east-2.amazonaws.com/add-user-post" ,{

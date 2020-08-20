@@ -1,23 +1,20 @@
 <template>
   <div id="mainpage">
-    <h5>ようこそ、{{ userName }}さん  <button @click="logout">ログアウト</button></h5>
-    <!-- <button @click="logout" class="logout">ログアウト</button> -->
+    <h5>ようこそ、{{ userName }}さん  <button @click="logout">ログアウト</button><button @click="removeUser">アカウント削除</button></h5>
     <br />
     <h2>かんばんボード</h2>
     <p>とれぷろ！ 作</p>
-    <!-- <input type="text" v-model="keyWord" placeholder="検索" onfocus="this.placeholder = ''"> -->
     <Kanban  v-on:shuffle="shuffle" />
-    <!-- <button @click="shuffle">SHUFFLE</button> -->
-    <transition-group>
       <span v-for="pic in pics" :key="pic.key">
         <img :class="pic.class" :src="pic.src" />
       </span>
-    </transition-group>
   </div>
 </template>
 <script>
 import Kanban from "../components/Kanban";
 import _ from "lodash";
+import axios from "axios";
+
 export default {
   name: "MainPage",
   components: {
@@ -34,6 +31,7 @@ export default {
         { key: 2, src: require("../assets/pic2.png"), class: "pic2" },
         { key: 3, src: require("../assets/pic1.png"), class: "pic1" },
       ],
+       setUsers: []
     };
   },
   methods: {
@@ -44,6 +42,21 @@ export default {
       this.pics = _.shuffle(this.pics);
       console.log(this.timer);
     },
+    removeUser: function(){
+       axios
+        .post(
+          "https://nkcxahlvik.execute-api.us-east-2.amazonaws.com/remove-user" ,{
+            userId: this.userName,
+          }
+        )
+        .then(
+          (response) =>
+            (this.setUsers = JSON.parse(response.data.body)["Items"])
+        )
+        .catch((error) => console.log(error))
+        .finally(() => this.$store.commit("setUsers", this.setUsers));
+      this.$router.push({ path: "/"});
+    }
   },
   mounted() {
       this.timer = setInterval( this.shuffle, 5000);
